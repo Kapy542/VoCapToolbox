@@ -1,8 +1,8 @@
 % Data is saved into transformation matrices (T) such as there are 4 matrices per module
-% Torigo_to_module (Module 1 is the origo ...)
+% Torigo_to_module (Module 1 is the origo)
 % Tmodule_to_RGB1
 % Tmodule_to_RGB2
-% Tmodule_to_depth ( ... and more precisely the depth camera)
+% Tmodule_to_depth
 % Torigo_to_RGB1 = Torigo_to_module * Tmodule_to_RGB1 ... etc.
 
 % transform.txt: Describes transformation of specific module (Torigo_to_module)
@@ -10,7 +10,7 @@
 % CameraParams_Secondary.json: Transformation of RGB_2 in corresponding module's coordinate frame (in transform.txt) + other information
 
 % Path for pngs folder
-path = "C:\Users\kapyla\Downloads\plenoptima_transformations\pngs\"
+path = ".\plenoptima_transformations\pngs\"
 
 %% Read transformations
 for i=1:32
@@ -49,7 +49,7 @@ for i=1:32
 
     
     % Read depth Transformation
-    fid = fopen(strcat(path, num2str(i), "\CameraParams_Secondary.json")); % Opening the file
+    fid = fopen(strcat(path, num2str(i), "\CameraParams_Primary.json")); % Opening the file
     raw = fread(fid,inf); % Reading the contents
     str = char(raw'); % Transformation
     fclose(fid); % Closing the file
@@ -114,7 +114,7 @@ grid on
 
 % Plot cam1 (Origo)
 t = Torigo_to_module(1:3,4,1);
-plot3(t(1),t(2),t(3),"go");
+plot3(t(1),t(2),t(3),"g.");
 
 % Plot cylinder
 plot3(cylinder_origo(1),cylinder_origo(2),cylinder_origo(3),"r.");
