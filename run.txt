@@ -1,0 +1,10 @@
+# Produce .mp4 .syk and .mvx for streaming
+
+# Without audio
+.\XmlGraphRunner.exe C:\Users\Civit\Desktop\rysk_compress.xml --input C:\storage\robert3\mesh.mvx --scale 4 --ffmpeg_cmd "ffmpeg -y -hide_banner -f rawvideo -c:v rawvideo -pix_fmt nv12 -s:v 1024x1024 -r 25 -i \\.\pipe\to_ffmpeg  -c:v h264 -crf 20 C:\storage\robert3\syk\syk_test.mp4" --output C:\storage\robert3\syk\syk_test.mvx --syk_file C:\storage\robert3\syk\syk_test.syk
+
+# With audio
+.\XmlGraphRunner.exe C:\Users\Civit\Desktop\rysk_compress.xml --input C:\storage\robert3\mesh.mvx --scale 4 --ffmpeg_cmd "ffmpeg -y -hide_banner -f rawvideo -c:v rawvideo -pix_fmt nv12 -s:v 1024x1024 -r 25 -i \\.\pipe\to_ffmpeg -i C:\storage\robert3\c19657c6-2ab2-11ed-89fc-84144db0cd3f.wav -c:a aac -c:v h264 -crf 20 C:\storage\robert3\syk\syk_test.mp4" --output C:\storage\robert3\syk\syk_test.mvx --syk_file C:\storage\robert3\syk\syk_test.syk
+
+# Frong scale
+.\XmlGraphRunner.exe C:\Users\Civit\Desktop\rysk_compress.xml --input C:\storage\robert3\mesh.mvx --scale 2 --ffmpeg_cmd "ffmpeg -y -hide_banner -f rawvideo -c:v rawvideo -pix_fmt nv12 -s:v 1024x1024 -r 25 -i \\.\pipe\to_ffmpeg  -c:v h264 -crf 20 C:\storage\robert3\syk\syk_test.mp4" --output C:\storage\robert3\syk\syk_test.mvx --syk_file C:\storage\robert3\syk\syk_test.syk

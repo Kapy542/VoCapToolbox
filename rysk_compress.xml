@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genesis version="1.0">
+    <mvxpipeline playmode="0" playspeed="0">
+        <filter guid="b74863f3-13cf-47a0-9f90-07718fc52ab6" name="MVX2FileReader" positionx="12" positiony="2" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="$input$"/>
+            </parameters>
+        </filter>
+        <filter guid="9405a7fa-0533-4ce6-8f87-8a5407410904" name="#AutoDecompressor" positionx="12" positiony="3" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Drop compressed input" value="True"/>
+            </parameters>
+        </filter>
+		<filter guid="5c5ffe94-993e-465e-b556-48875a90b717" name="#RYSKEncoder" positionx="12" positiony="4" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Drop encoded layers" value="True"/>
+                <parameter name="Force IFrames" value="False"/>
+            </parameters>
+        </filter>
+        <filter guid="16d81ea7-0636-4ea9-ae34-b6619ba2b668" name="#TextureResizerSubsample" positionx="12" positiony="5" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Resize rgb (a9065dba-7a9e-4a2c-82f9-56d0872dd102)" value="True"/>
+				<parameter name="Resize rgb (ac29c86c-6729-456a-adf5-df1d14804716)" value="True"/>
+                <!-- Nearest,Bilinear,Lanczos -->
+                <parameter name="Quality" value="Bilinear"/>
+                <!-- depends on input size, also adapt  -->
+                <parameter name="Scale" value="$scale$"/>
+            </parameters>
+        </filter>
+        <filter guid="4E700C8B-7886-405F-9080-AFA97E12A606" name="AddBitHeader" positionx="12" positiony="6" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="BitSizeX (pixels)" value="4"/>
+                <parameter name="BitSizeY (pixels)" value="2"/>
+            </parameters>
+        </filter>
+        <filter guid="151cec26-285d-426b-8e80-3fdc0ca99230" name="TextureRGBtoNV12" positionx="12" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile" value="0"/>
+            </parameters>
+        </filter>
+        <filter guid="75ecfccf-9f9f-42ef-a353-7d7c50aaccf5" name="#DataLayersDropper" positionx="12" positiony="8" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="Drop {MULTIPATCH_COMBINED/TextureRGB/NIL}" value="True"/>
+
+                <parameter name="Drop {MERGED_TSDF/TriangleWeights/NIL}" value="True"/>
+            </parameters>
+        </filter>
+
+		<filter guid="25cd280d-b5d2-4d7c-a3c1-577d72aa4eb8" name="RYSKWriter" positionx="12" positiony="9" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Output File Path" value="$syk_file$"/>
+                <parameter name="Enable Recording" value="True"/>
+            </parameters>
+        </filter>
+        <filter guid="f44e5dd3-ccc1-411d-b734-dde2be424434" name="FFpipe" positionx="12" positiony="10" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="ffmpeg output:" value=""/>
+                <parameter name="ffmpeg audio latency (sec):" value="0.000000"/>
+                <parameter name="ffmpeg audio input:" value=" &quot;OBS-Audio&quot; "/>
+                <parameter name="ffmpeg command:" value="$ffmpeg_cmd$"/>
+            </parameters>
+        </filter>
+				<filter guid="75ecfccf-9f9f-42ef-a353-7d7c50aaccf5" name="#DataLayersDropper" positionx="11" positiony="12" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+				<parameter name="Drop {MERGED_POISSON/VertexNormals/NIL}" value="True"/>
+                <parameter name="Drop {MERGED_TSDF/VertexNormals/NIL}" value="True"/>
+            </parameters>
+        </filter>
+
+        <filter guid="7549b729-3804-4f6d-9741-a6000c882635" name="#H264Compressor" positionx="12" positiony="12" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Drop original data" value="True"/>
+                <parameter name="Compressed atoms buffer size per stream" value="20"/>
+                <parameter name="Compression profile" value="2"/>
+                <parameter name="Quality" value="0.7"/>
+                <parameter name="CABAC enabled" value="True"/>
+                <parameter name="All frames keyframes" value="False"/>
+            </parameters>
+        </filter>
+         <filter guid="972ee495-eb8e-48a8-ab94-43797e34a436" name="MVX2FileWriter" positionx="12" positiony="13" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="$output$"/>
+                <parameter name="Enable Recording" value="True"/>
+            </parameters>
+        </filter>
+    </mvxpipeline>
+</genesis>

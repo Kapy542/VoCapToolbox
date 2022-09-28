@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genesis version="1.0">
+    <mvxpipeline playmode="0" playspeed="0">
+        <filter guid="b74863f3-13cf-47a0-9f90-07718fc52ab6" name="MVX2FileReader" positionx="8" positiony="1" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="$input$"/>
+            </parameters>
+        </filter>
+		<!-- <filter guid = "75ecfccf-9f9f-42ef-a353-7d7c50aaccf5" name = "#DataLayersDropper" positionx = "9" positiony = "2" width = "10" height = "1" selected = "1" rendered = "0"> -->
+            <!-- <parameters> -->
+                <!-- <parameter name = "Drop {MINC/PCMSample/NIL}" value                             = "True"/> -->
+                <!-- <parameter name = "Drop {MV4D/CameraParams/NIL}" value                          = "True"/> -->
+                <!-- <parameter name = "Drop {SECONDARY_COLOR/CameraParams/NIL}" value               = "True"/> -->
+                <!-- <parameter name = "Drop {PHOTOGRAMMETRY/PhotogrammetryInfo/NIL}" value          = "True"/> -->
+                <!-- <parameter name = "Drop {MV4D/CylinderCrop/NIL}" value                          = "False"/> -->
+                <!-- <parameter name = "Drop {MINC/Binary/NIL}" value                                = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/Transform/NIL}" value                             = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/StreamInfo/NIL}" value                            = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/VertexNormals/NIL}" value                         = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/CompressedTexture/TextureRGB}" value              = "False"/> -->
+                <!-- <parameter name = "Drop {PHOTOGRAMMETRY/CompressedTexture/TextureRGB}" value    = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/CompressedVertexPositions/VertexPositions}" value = "False"/> -->
+                <!-- <parameter name = "Drop {MV4D/CompressedTexture/Texture16BitDepthMap}" value    = "False"/> -->
+            <!-- </parameters> -->
+        <!-- </filter> -->
+         <filter guid="9405a7fa-0533-4ce6-8f87-8a5407410904" name="#AutoDecompressor" positionx="7" positiony="4" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Drop compressed input" value="True"/>
+            </parameters>
+        </filter> 
+        <!-- <filter guid="13edcff2-7dcf-47ce-8fef-ac0b417856da" name="AddCylinderCrop" positionx="7" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Cylinder crop" value="$cylinder$"/>
+            </parameters>
+        </filter> -->
+       
+        <filter guid="6b095b79-0f6d-4898-b65b-724af9bc0bdf" name="CreateUndistortedColorSpaceRGB" positionx="8" positiony="5" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile Name" value="{MV4D/StreamInfo/NIL} {PHOTOGRAMMETRY/TextureRGB/NIL} {SECONDARY_COLOR/CameraParams/NIL}"/>
+            </parameters>
+        </filter>
+        <filter guid="6b095b79-0f6d-4898-b65b-724af9bc0bdf" name="CreateUndistortedColorSpaceRGB" positionx="8" positiony="6" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile Name" value="{MV4D/StreamInfo/NIL} {MV4D/TextureRGB/NIL} {MV4D/CameraParams/NIL}"/>
+            </parameters>
+        </filter>
+        <filter guid="8fbdb206-a043-4f78-b469-544a6d1f98a4" name="MulticamCreateMeshPoissonPCL" positionx="8" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile" value="0"/>
+                <parameter name="Start Frame" value="0"/>
+                <parameter name="End Frame" value="10000"/>
+                <parameter name="Poisson Depth" value="9"/>
+                <parameter name="Poisson Error" value="0.000000"/>
+                <parameter name="Use Texture Alignment" value="False"/>
+                <parameter name="Use Geometric Alignment" value="False"/>
+                <parameter name="Texturing Algorithm" value="2"/>
+                <parameter name="Texture Atlas Width" value="4096"/>
+                <parameter name="Texture Atlas Height" value="4096"/>
+                <parameter name="Denoising" value="2"/>
+                <parameter name="Denoiser MLS Radius" value="5.000000"/>
+                <parameter name="Clip Mesh to Cylinder" value="True"/>
+                <parameter name="Use Shape From Silhouette" value="False"/>
+                <parameter name="Mesh Trimming Percentile" value="0.000000"/>
+                <parameter name="Maximum In-painted region size (mm)" value="500"/>
+                <parameter name="Small Component Removal Threshold (Percentage of Polygon Count)" value="1.000000"/>
+                <parameter name="Use Photogrammetry" value="True"/>
+                <parameter name="Photogrammetry Image Type" value="0"/>
+                <parameter name="Photogrammetry Depth Map Width" value="800"/>
+                <parameter name="Photogrammetry Depth Map Height" value="600"/>
+                <parameter name="Photogrammetry Fusion Weight" value="0.500000"/>
+                <parameter name="Use Hand Model" value="True"/>
+                <parameter name="Use Face Model" value="False"/>
+                <parameter name="Texture Weight Power" value="6"/>
+                <!-- inflcunes on the whight of the blending -->
+                <parameter name="Face Texture Weight Factor" value="2.000000"/>
+                <!-- ralted to other patches, increase by n, to fit in the atlas.  -->
+                <parameter name="Face Texture Resolution Factor" value="3.00000"/>
+                <parameter name="High Priority Textures" value="-1"/>
+                <parameter name="High Priority Textures Factor" value="3.00000"/>
+                <parameter name="Use Silhouettes for Texturing" value="True"/>
+                <parameter name="Output Silhouettes" value="False"/>
+                <parameter name="Texturing Streams Preset" value="2"/>
+                <parameter name="Subsample Image" value="False"/>
+                <parameter name="Decimate Mesh" value="True"/>
+                <parameter name="Mesh Decimation Algorithm" value="0"/>
+                <parameter name="Decimation Polygon Target" value="45000"/>
+                <parameter name="Decimation Factor" value="0.500000"/>
+                <parameter name="Face Region Decimation Weight" value="100.000000"/>
+                <parameter name="Fill holes" value="True"/>
+                <parameter name="Apply Cylinder Transform" value="True"/>
+                <parameter name="Mesh Tracking Keyframe Interval" value="25"/>
+                <parameter name="Mesh Tracking Graph Resolution" value="30.000000"/>
+                <parameter name="Mesh Tracking Rigidity Coefficient" value="0.500000"/>
+                <parameter name="Mesh Tracking Distance Threshold" value="1.000000"/>
+                <parameter name="Mesh Tracking Topology Change Sensitivity" value="0.500000"/>
+                <parameter name="Mesh Tracking Use Non-Linear Solver" value="False"/>
+                <parameter name="Number of Threads" value="0"/>
+                <parameter name="Output stereo point clouds" value="True"/>
+                <parameter name="Use UVAtlas for texture packing" value="True"/>
+            </parameters>
+        </filter>
+		<!-- <filter guid = "31b12186-ecd4-4b98-9dfe-0d89305f1fe3" name = "#RAWImporter" positionx = "9" positiony = "8" width = "10" height = "1" selected = "0" rendered = "0">
+            <parameters>
+                <parameter name = "Input Directory" value                = "$transformDir$"/>
+                <parameter name = "PhotoGrammetry Data" value            = "False"/>
+                <parameter name = "Embedded files" value                 = "False"/>
+                <parameter name = "Cylinder crop" value                  = "True"/>
+                <parameter name = "Camera params" value                  = "False"/>
+                <parameter name = "Import PCL" value                     = "False"/>
+                <parameter name = "Import camera matrix format" value    = "0"/>
+                <parameter name = "Load single frame data only" value    = "True"/>
+                <parameter name = "Number of stream" value               = "1"/>
+                <parameter name = "Number of frames" value               = "99999"/>
+                <parameter name = "Import from stream folders" value     = "False"/>
+            </parameters>
+        </filter>
+        <filter guid="ee612eb6-bc70-4a96-b19e-2b1757e1921e" name="#VertexRotateCropper" positionx="8" positiony="9" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+            </parameters>
+        </filter>
+        <filter guid="11b09821-2c2f-4251-9265-2c76e083df3d" name="#MergeAudio" positionx="8" positiony="10" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="Input file" value="F:/STORAGE/katy_02/a1ba7d5f-4287-485d-b6c8-0309eaea1698/a1ba7d5f-4287-485d-b6c8-0309eaea1698/joined/a1ba7d5f-4287-485d-b6c8-0309eaea1698_mesh_norm.wav"/>
+            </parameters>
+        </filter> -->
+        <filter guid="21b46099-4f51-4962-9f9b-5265b336972a" name="#AutoCompressor" positionx="13" positiony="8" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Drop uncompressed input" value="True"/>
+                <parameter name="Compression quality" value="95"/>
+            </parameters>
+        </filter>
+        <filter guid="972ee495-eb8e-48a8-ab94-43797e34a436" name="MVX2FileWriter" positionx="9" positiony="21" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="$output$"/>
+                <parameter name="Write XML" value="True"/>
+                <parameter name="Create thumbnail for first frame" value="False"/>
+                <parameter name="Enable Recording" value="True"/>
+            </parameters>
+        </filter>
+    </mvxpipeline>
+</genesis>

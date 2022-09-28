@@ -1,0 +1,76 @@
+# Clean nukes:
+Import-Module .\ring_it.psm1 -Force && clean
+
+Import-Module .\mvpyrest.psm1 -Force
+startNucs
+mvpy_upload_run -graph "tx_mv_dm.txt"
+getfps
+setFps 25
+
+
+###############################
+# Short recordings on objects #
+###############################
+cd to C:\ring_it
+
+1. On desktop set fps=8
+
+2. Record for 1 second
+Import-Module .\mvpyrest.psm1 -Force && mvpy_startRec -beep 1 -method_of_capture jpg -take dummytest 
+
+
+
+
+#############################
+# Long recordings on humans #
+#############################
+cd to C:\ring_it
+
+1. On desktop set fps=25
+
+2. Start recording
+Import-Module .\mvpyrest.psm1 -Force && mvpy_startRec -method_of_capture jpg -take test1306
+
+3. Stop recording
+mvpy_stopRec -method_of_capture jpg
+
+
+
+
+
+
+
+
+#################################
+# Plys and raw images from cams #
+#################################
+
+1. cd to current build
+cd to C:\ring_it\builds\MVAgent.14-05-2022_15ca63b
+
+2. plys: (1 from each camera)
+.\XmlGraphRunner.exe C:\ring_it\Graphs\xml6\readtoplyStream.xml --input F:\plenoptima_ws2\WS2_Body\WS2_Bodies_220613_ID10_VS01\WS2_Bodies_220613_ID10_VS01_joined.mvx --export F:\plenoptima_ws2\WS2_Body\WS2_Bodies_220613_ID10_VS01\plys\ --end 1
+
+(one ply)
+.\XmlGraphRunner.exe C:\ring_it\Graphs\xml6\readTOPly.xml --input F:\plenoptima_ws2\WS2_Body\WS2_Bodies_220613_ID10_VS01\WS2_Bodies_220613_ID10_VS01_joined.mvx --export F:\plenoptima_ws2\WS2_Body\WS2_Bodies_220613_ID10_VS01\plys\WS2_Bodies_220613_ID10_VS01
+
+3. imgs: (depth, rgb, ply?, calibration)
+.\XmlGraphRunner.exe C:\ring_it\Graphs\xml6\98_rawExportPNG.xml --input C:\storage\test_jani\test_jani_joined.mvx --output F:\plenoptima_ws2\WS2_Body\WS2_Bodies_220613_ID10_VS01\raw --end 10
+.\XmlGraphRunner.exe C:\Users\Civit\Desktop\exportPNG.xml --input C:\storage\test_jani\test_jani_joined.mvx --output C:\storage\test_jani\rgbtesti
+
+4. obj?:
+.\XmlGraphRunner.exe C:\ring_it\Graphs\xml6\dev\readTOobj.xml --input C:\storage\WS2_Bodies_220613_ID13_VS01\four_joined.mvx --export C:\storage\WS2_Bodies_220613_ID13_VS01\objs\ --end 1
+
+.\XmlGraphRunner.exe C:\ring_it\Graphs\xml6\dev\readTOobj.xml --input C:\storage\WS2_Bodies_220613_ID13_VS01\four_joined.mvx --export test --end 1
+
+
+###########
+# Poisson #
+###########
+.\XmlGraphRunner.exe `
+"C:\ring_it\Graphs\xml6\06_joined_to_mesh_poission_runner.xml" `
+--start 0 --end 750 `
+--input "C:\storage\c6322154-1fa9-11ed-b0d9-84144db0cd3f\c6322154-1fa9-11ed-b0d9-84144db0cd3f_joined.mvx" `
+--output "C:\storage\c6322154-1fa9-11ed-b0d9-84144db0cd3f\c6322154-1fa9-11ed-b0d9-84144db0cd3f.mvx" 
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\06_joined_to_mesh_poission_runner_test.xml" --start 0 --end 20 --input "C:\storage\test_jani\test_jani_joined.mvx" --output "C:\storage\test_jani\test_jani_poisson.mvx" 

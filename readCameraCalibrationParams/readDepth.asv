@@ -1,0 +1,16 @@
+% Depth image is uint16
+% Every incease in value is 1mm in real world
+
+imgs = ["./imgs/00000_DepthMap16bit.png"]
+
+img = imread( imgs(1) );
+
+m = mean(mean(img(img>0))) % Mean value
+tl = img(1,1) 		       % Top left pixel
+max_val = max(max(img))    % max value
+min_val = min(min(img>0))  % min nonzero value
+
+% img(1,1) = 0;
+
+figure; imagesc(img)         % imagesc-function automatically scales the values to color range
+imshow(img/max_val)  % With imshow.function scaling is necessary
