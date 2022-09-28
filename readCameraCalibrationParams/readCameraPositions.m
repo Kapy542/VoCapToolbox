@@ -179,3 +179,21 @@ t2 = T2(1:3,4);
 distance_between_RGBs = norm(t1-t2)
 distance_between_depthRGB1 = norm(td-t1)
 distance_between_depthRGB2 = norm(td-t2)
+
+
+%% Plenoptima: Distances between Nucs 1 and 30 
+
+t_1_RGB1 = Torigo_to_RGB1(1:3,4,1);
+t_30_RGB1 = Torigo_to_RGB1(1:3,4,30);
+
+t_1_d = Torigo_to_depth(1:3,4,1);
+t_30_d = Torigo_to_depth(1:3,4,30);
+
+% Distance between RGB1s in Nucs 1 and 30
+distance_between_RGBs = norm(t_1_RGB1 - t_30_RGB1)
+
+% Distance between depths in Nucs 1 and 30
+distance_between_depths = norm(t_1_d - t_30_d)
+
+writematrix(distance_between_RGBs,'./outs/distance_Nuc1_Nuc30_RGB1.txt','Delimiter',',')
+writematrix(distance_between_depths,'./outs/distance_Nuc1_Nuc30_depth.txt','Delimiter',',')
