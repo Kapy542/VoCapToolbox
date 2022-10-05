@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genesis version="1.0">
+    <mvxpipeline playmode="0" playspeed="0">
+        <filter guid="b74863f3-13cf-47a0-9f90-07718fc52ab6" name="MVX2FileReader" positionx="6" positiony="6" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="C:/storage/audio_test/audio_test_joined.mvx"/>
+            </parameters>
+        </filter>
+        <filter guid="11b09821-2c2f-4251-9265-2c76e083df3d" name="#MergeAudio" positionx="6" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile" value="0"/>
+                <parameter name="Input file" value="C:/storage/audio_test/audio_test_cellphone.wav"/>
+                <parameter name="Offset Audio (Milliseconds)" value="0"/>
+            </parameters>
+        </filter>
+        <filter guid="972ee495-eb8e-48a8-ab94-43797e34a436" name="MVX2FileWriter" positionx="6" positiony="8" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="Keep {MV4D/CylinderCrop/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/Binary/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/StreamInfo/NIL}" value="True"/>
+                <parameter name="Keep {PHOTOGRAMMETRY/PhotogrammetryInfo/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/Transform/NIL}" value="True"/>
+                <parameter name="Keep {SECONDARY_COLOR/CameraParams/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/CameraParams/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/VertexColors/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/CompressedTexture/TextureRGB}" value="True"/>
+                <parameter name="Keep {PHOTOGRAMMETRY/CompressedTexture/TextureRGB}" value="True"/>
+                <parameter name="Keep {MV4D/CompressedVertexPositions/VertexPositions}" value="True"/>
+                <parameter name="Keep {MV4D/CompressedVertexNormals/VertexNormals}" value="True"/>
+                <parameter name="Keep {MV4D/CompressedTexture/Texture16BitDepthMap}" value="True"/>
+                <parameter name="Keep {MINC/PCMSample/NIL}" value="True"/>
+                <parameter name="MVX File Path" value="C:/storage/audio_test/audio_merge.mvx"/>
+                <parameter name="Write XML" value="True"/>
+                <parameter name="Create thumbnail for first frame" value="False"/>
+                <parameter name="Enable Recording" value="False"/>
+                <parameter name="Chunk size" value="8000000"/>
+            </parameters>
+        </filter>
+    </mvxpipeline>
+</genesis>

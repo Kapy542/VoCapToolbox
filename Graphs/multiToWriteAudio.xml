@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genesis version="1.0">
+    <mvxpipeline playmode="0" playspeed="0">
+        <filter guid="6d82a817-bac2-4277-b599-7848f2170add" name="MVX2MultiFileReader" positionx="18" positiony="6" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="MVX files dir" value="$input$"/>
+            </parameters>
+        </filter>
+        <filter guid="8995a162-5083-455f-bf2f-c2b72a5b6433" name="#ChronosBasic" positionx="18" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Create log files" value="True"/>
+                <parameter name="Output folder" value="$outputdir$"/>
+                <parameter name="Allowed number of omitted bundle frames" value="4"/>
+                <parameter name="Generate empty frame if missing" value="False"/>
+                <parameter name="Bundle delta (msec)" value="20.000000"/>
+            </parameters>
+        </filter>
+        <filter guid="11b09821-2c2f-4251-9265-2c76e083df3d" name="#MergeAudio" positionx="18" positiony="8" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Input Profile" value="0"/>
+                <parameter name="Input file" value="$audio$"/>
+                <parameter name="Offset Audio (Milliseconds)" value="0"/>
+            </parameters>
+        </filter>
+        <filter guid="3802d826-7d62-41bf-a92e-6a56e3700590" name="MVX2FileWriterAsync" positionx="18" positiony="9" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="MVX File Path" value="$output$"/>
+                <parameter name="Enable Recording" value="True"/>
+                <parameter name="Drop frames when full" value="False"/>
+            </parameters>
+        </filter>
+    </mvxpipeline>
+</genesis>
