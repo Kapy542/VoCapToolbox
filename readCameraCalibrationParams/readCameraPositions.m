@@ -10,7 +10,7 @@
 % CameraParams_Secondary.json: Transformation of RGB_2 in corresponding module's coordinate frame (in transform.txt) + other information
 
 % Path for pngs folder
-path = ".\plenoptima_transformations\pngs\"
+path = "./before_plenoptima_transformations/pngs/"
 
 %% Read transformations
 for i=1:32
@@ -21,11 +21,11 @@ for i=1:32
     end
 
     % Read IR camera transformations (RGBs are fixed to this)
-    Torigo_to_depth(:,:,i) = readmatrix( strcat(path, num2str(i), "\transform.txt") );
+    Torigo_to_depth(:,:,i) = readmatrix( strcat(path, num2str(i), "/transform.txt") );
     
 
     % Read RGB1 Transformation
-    fid = fopen(strcat(path, num2str(i), "\CameraParams_Primary.json")); % Opening the file
+    fid = fopen(strcat(path, num2str(i), "/CameraParams_Primary.json")); % Opening the file
     raw = fread(fid,inf); % Reading the contents
     str = char(raw'); % Transformation
     fclose(fid); % Closing the file
@@ -37,7 +37,7 @@ for i=1:32
 
 
     % Read RGB2 Transformation
-    fid = fopen(strcat(path, num2str(i), "\CameraParams_Secondary.json")); % Opening the file
+    fid = fopen(strcat(path, num2str(i), "/CameraParams_Secondary.json")); % Opening the file
     raw = fread(fid,inf); % Reading the contents
     str = char(raw'); % Transformation
     fclose(fid); % Closing the file
@@ -117,6 +117,11 @@ for i=1:32
         continue
     end
     
+    % Cam of interest
+    if i == 29
+        plot3(t_depth(i,1),t_depth(i,2),t_depth(i,3),"r.",'MarkerSize', 20); % Cam center
+    end
+    
     % Rotate, translate and plot line from RGB1-coordinates to World-coordinates
     % Torigo_to_cam = Torigo_to_module * Tmodule_to_cam  ...  etc.
     transformed_line = Torigo_to_depth(:,:,i)*Tdepth_to_RGB1(:,:,i)*line;
@@ -128,7 +133,7 @@ for i=1:32
     plot3(transformed_line(1,:),transformed_line(2,:),transformed_line(3,:), "b");
     plot3(t_RGB2(i,1),t_RGB2(i,2),t_RGB2(i,3),"bo"); % Cam center
 
-    % and for depth.
+    % and for depth (also module origo).
     transformed_line = Torigo_to_depth(:,:,i)*line;
     plot3(transformed_line(1,:),transformed_line(2,:),transformed_line(3,:), "r");    
     plot3(t_depth(i,1),t_depth(i,2),t_depth(i,3),"ro"); % Cam center
@@ -155,8 +160,8 @@ distance_between_depthRGB2 = norm(td-t2)
 
 td = zeros(3,1); % In module coordinate frame's origo
 
-T1 = Tmodule_to_RGB1(:,:,16);
-T2 = Tmodule_to_RGB2(:,:,16);
+T1 = Tdepth_to_RGB1(:,:,16);
+T2 = Tdepth_to_RGB2(:,:,16);
 t1 = T1(1:3,4);
 t2 = T2(1:3,4);
 
