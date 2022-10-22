@@ -1,0 +1,2 @@
+# Clean nukes:
+Import-Module .\ring_it.psm1 -Force && clean

@@ -18,7 +18,7 @@ pngs\ calibration_parameters.txts
 
 ./run.bat name_of_the_take (-pngs 1/0 -plys 1/0 -ply 1/0 -mesh 1/0 -start 0-n -end -1-n)
 
-Processes quickly 1 frame in the demo session
+Processes n frames
 
 Optional arguments - 1 process - 0 don't process:
 -pngs: Images per camera in pngs\*_color.png, pngs\*_depth.png pngs\calibration_parameters.txts

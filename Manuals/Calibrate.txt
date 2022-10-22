@@ -1,0 +1,57 @@
+Steps to calibrate
+
+Start by turning lights ON. (On the desktop "lights main ON")
+Open Terminal in "C:\ring_it"
+
+1. Init Nucs:
+Import-Module .\mvpyrest.psm1 -Force
+killNucProcesses
+startNucs
+mvpy_upload_run -graph "TX_mv_PATT.txt"
+setFps 1
+
+2. Start recording (Hox take_name):
+mvpy_startRec -method_of_capture jpg -take align_1010_3
+
+
+3. Record: Nuc 1 always included (start from there), slowish movement, overlap between cameras.
+
+
+4. Stop recording:
+mvpy_stopRec -method_of_capture jpg
+
+
+5. Run patternalignment graph (Hox use latest build + take_name):
+
+cd "C:\ring_it\builds\MVAgent.05-09-2022_60ce56b.Windows.Release"
+
+.\XmlGraphRunner.exe "C:\ring_it\Graphs\xml6\65_patternAlignemnt.xml" --input "C:\Storage\align_0610_5\align_0610_5_joined.mvx" --export "C:\Storage\align_0610_5\transform"
+
+6. Check results after processing is done
+
+
+7. Copy the export folder onto the studioExport folder
+C:\Storage\align_0610_5\transfrom > C:\ring_it\StudioExport_TMPR
+
+
+8. Spread new transforms to the ring:
+
+spread
+
+
+9. Verify place dummy (or someone) in ring and shoot a few frames
+you can stay in 1FPS:
+
+Import-Module .\mvpyrest.psm1 -Force
+killNucProcesses
+startNucs
+mvpy_upload_run -graph "TX_mv_PATT.txt"
+setFps 1
+mvpy_startRec -method_of_capture jpg -beep 4 -take align_0610_5_post2
+
+doGeoAlign -take align_0610_5_post2
+
+observe the doAlign output, see if it introduce corrections you can use.
+if not goto 1.
+
+"C:\Users\Civit\Desktop\process_demo\calibrate.txt"

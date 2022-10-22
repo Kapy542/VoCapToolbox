@@ -1,0 +1,1 @@
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\appendMeshes.xml" --input C:\storage\9176a328-4970-11ed-8e19-84144db0cd3f\meshes --output C:\storage\9176a328-4970-11ed-8e19-84144db0cd3f\meshes\mesh.mvx
