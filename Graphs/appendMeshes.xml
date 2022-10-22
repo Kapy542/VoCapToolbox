@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genesis version="1.0">
+    <mvxpipeline playmode="0" playspeed="0">
+        <filter guid="757504f3-a320-43a6-bfd1-9ace60edeb7e" name="MVX2MultiFileAppend" positionx="18" positiony="6" width="10" height="1" selected="1" rendered="0">
+            <parameters>
+                <parameter name="MVX files dir" value="$input$"/>
+            </parameters>
+        </filter>
+        <filter guid="8995a162-5083-455f-bf2f-c2b72a5b6433" name="#ChronosBasic" positionx="18" positiony="7" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Create log files" value="True"/>
+                <parameter name="Allowed number of omitted bundle frames" value="4"/>
+                <parameter name="Generate empty frame if missing" value="False"/>
+                <parameter name="Bundle delta (msec)" value="20.000000"/>
+            </parameters>
+        </filter>
+        <filter guid="3802d826-7d62-41bf-a92e-6a56e3700590" name="MVX2FileWriterAsync" positionx="18" positiony="8" width="10" height="1" selected="0" rendered="0">
+            <parameters>
+                <parameter name="Keep {MERGED_POISSON/StreamInfo/NIL}" value="True"/>
+                <parameter name="Keep {MV4D/CylinderCrop/NIL}" value="True"/>
+                <parameter name="Keep {MINC/PCMSample/NIL}" value="True"/>
+                <parameter name="Keep {MERGED_POISSON/CompressedVertexPositions/VertexPositions}" value="True"/>
+                <parameter name="Keep {MERGED_POISSON/CompressedVertexNormals/VertexNormals}" value="True"/>
+                <parameter name="Keep {MERGED_POISSON/CompressedVertexIndices/VertexIndices}" value="True"/>
+                <parameter name="Keep {MERGED_POISSON/CompressedVertexTextureUVs/VertexTextureUVs}" value="True"/>
+                <parameter name="Keep {MERGED_POISSON/CompressedTexture/TextureRGB}" value="True"/>
+                <parameter name="MVX File Path" value="$output$"/>
+                <parameter name="Write XML" value="True"/>
+                <parameter name="Create thumbnail for first frame" value="False"/>
+                <parameter name="Enable Recording" value="True"/>
+                <parameter name="Chunk size" value="8000000"/>
+                <parameter name="Buffer size" value="20"/>
+                <parameter name="Drop frames when full" value="False"/>
+            </parameters>
+        </filter>
+    </mvxpipeline>
+</genesis>
