@@ -1,0 +1,25 @@
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\01_joined_to_mesh_tsdf_runner.xml" --input "C:\storage\audio_test\audio_test_joined.mvx" --output "C:\storage\audio_test\audio_test_tsdf.mvx"
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\01_joined_to_mesh_tsdf_runner.xml" --input "C:\storage\audio_test\audio_test_gen.mvx" --output "C:\storage\audio_test\audio_test_gen_tsdf.mvx"
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\01_joined_to_mesh_tsdf_runner.xml" --input "C:\storage\audio_test\audio_test_gen2.mvx" --output "C:\storage\audio_test\audio_test_gen2_tsdf.mvx"
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\01_joined_to_mesh_tsdf_runner.xml" --input "C:\storage\audio_test\audio_test_gen3.mvx" --output "C:\storage\audio_test\audio_test_gen3_tsdf.mvx"
+
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\inject_audio.xml" --input C:\storage\take\take.mvx --output C:\storage\take\take_out.mvx --audio C:\storage\take\new_audio.wav
+
+
+.\XmlGraphRunner.exe "C:\Users\Civit\Desktop\process_demo\Graphs\inject_audio.xml" --input C:\storage\c5fefdb6-4973-11ed-87a5-84144db0cd3f\processed_mesh\mesh.mvx --output C:\storage\c5fefdb6-4973-11ed-87a5-84144db0cd3f\processed_mesh\mesh_with_mono_stereo_audio.mvx --audio C:\storage\c5fefdb6-4973-11ed-87a5-84144db0cd3f\processed_mesh\CUT_3_PAGE_Tim_Aerial_Roots_CIVIT_Ver_22_10_2022_mono_stereo.wav
+
+1. Run inject_audio.xml graph
+This requires paths to "input_joined.mvx", "output_joined.mvx", "new_audio.wav" and "new_audio.ts".
+- input_joined.mvx: raw data from VoCap
+- output_joined.mvx: new raw data file with new audio to be meshed
+- new_audio.wav: Audio from different source (Stereo tested)
+- new_audio.ts: Timestamp in UNIX-milliseconds-format. Points to the time when audio starts (not beep). Need same name as wav file
+
+2. Run meshing tsdf/poisson to new joined.mvx
+
+3. Output mesh.mvx should have new audio track
+

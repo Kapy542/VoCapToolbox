@@ -1,0 +1,16 @@
+ring_it/local_vars
+
+    @{
+        ring="tmpr";
+        xruser='ring';
+        xrpasswd='mvring';
+        xrroom='magics'
+    }
+
+
+"C:\Users\Civit\Desktop\delay.pd"
+DSP on
+
+Import-Module .\mvpyrest.psm1 -Force; startNucs; mvpy_upload_run -graph "tx_mv_dm.txt" -stream $true
+
+https://chatxr.ring-streaming.com/?r=civit

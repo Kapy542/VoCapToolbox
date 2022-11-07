@@ -18,7 +18,9 @@ pngs\ calibration_parameters.txts
 
 ./run.bat name_of_the_take (-pngs 1/0 -plys 1/0 -ply 1/0 -mesh 1/0 -start 0-n -end -1-n)
 
-Processes n frames
+./run.bat a20e515d-4971-11ed-b3b4-84144db0cd3f -pngs 0 -plys 1 -ply 0 -mesh 0 -start 368 -end 369
+
+Processes quickly 1 frame in the demo session
 
 Optional arguments - 1 process - 0 don't process:
 -pngs: Images per camera in pngs\*_color.png, pngs\*_depth.png pngs\calibration_parameters.txts
@@ -27,4 +29,3 @@ Optional arguments - 1 process - 0 don't process:
 -mesh: Does poisson and produces objs in meshes\*_.obj
 -start: Process from index ... (default=0=first frame)
 -end: ... to index (default=-1=last frame)
-
