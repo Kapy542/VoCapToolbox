@@ -72,7 +72,7 @@ for i=1:32
 
 end
 
-save('transformations.mat','Torigo_to_RGB1','Torigo_to_RGB2','Torigo_to_depth')
+save('./outs/transformations.mat','Torigo_to_RGB1','Torigo_to_RGB2','Torigo_to_depth')
 
 writematrix(t_RGB1,'./outs/RGB1_locations.txt','Delimiter',',')
 writematrix(t_RGB2,'./outs/RGB2_locations.txt','Delimiter',',')

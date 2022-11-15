@@ -12,3 +12,9 @@ Torigo_to_RGB1 = Torigo_to_depth * Tdepth_to_RGB1 ... etc.
 % transform.txt: Describes transformation of specific module's IR camera (Torigo_to_depth)
 % CameraParams_Primary.json: Transformations of RGB_1 in corresponding module's coordinate frame (in transform.txt) + other information
 % CameraParams_Secondary.json: Transformation of RGB_2 in corresponding module's coordinate frame (in transform.txt) + other information
+
+
+
+readDepth.m, readDepth.py
+
+Read depth images which is uint16. Every incease in value equals 1mm in real world.
